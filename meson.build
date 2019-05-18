@@ -232,8 +232,6 @@ hex = custom_target('firmware.hex',
 run_target('ardup',
   command : [
     avrdude,
-    '-C/usr/share/arduino/hardware/tools/avrdude.conf',
-    '-v', '-v', '-v', '-v',
     '-patmega2560', '-cwiring', '-P/dev/ttyUSB0', '-b115200',
     '-D', '-Uflash:w:@0@:i'.format(hex.full_path())
   ],
