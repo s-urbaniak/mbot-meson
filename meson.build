@@ -109,7 +109,7 @@ ardu_eeprom_src_dir = arduino_src_dir + '/libraries/EEPROM/src'
 
 # Makeblock library
 
-makeblock_src_dir = '/home/sur/src/Makeblock-Libraries/src'
+makeblock_src_dir = 'lib/makeblock'
 
 makeblock_lib_files = [
   'Me4Button.cpp',
