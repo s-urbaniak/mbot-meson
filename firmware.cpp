@@ -1281,9 +1281,9 @@ void runModule(uint8_t device)
     case JOYSTICK:
       {
         int16_t leftSpeed = readShort(6);
-        Encoder_1.setTarPWM(leftSpeed);
+        Encoder_1.setTarPWM(leftSpeed/2);
         int16_t rightSpeed = readShort(8);
-        Encoder_2.setTarPWM(rightSpeed);
+        Encoder_2.setTarPWM(rightSpeed/2);
       }
       break;
     case STEPPER:
