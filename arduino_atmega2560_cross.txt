@@ -1,7 +1,7 @@
 [binaries]
 c = '/usr/bin/avr-gcc'
 cpp = '/usr/bin/avr-g++'
-ar = '/usr/bin/avr-ar'
+ar = '/usr/bin/avr-gcc-ar'
 strip = '/usr/bin/avr-strip'
 
 [properties]

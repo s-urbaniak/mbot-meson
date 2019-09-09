@@ -6,7 +6,8 @@ project('auriga-firmware', 'c', 'cpp',
 
 assert(meson.is_cross_build(), 'Arduino projects can only be built in a cross build environment.')
 
-arduino_src_dir = '/usr/share/arduino/hardware/archlinux-arduino/avr'
+#arduino_src_dir = '/usr/share/arduino/hardware/archlinux-arduino/avr'
+arduino_src_dir = '/usr/share/arduino/hardware/arduino/avr'
 
 # Arduino core library
 
