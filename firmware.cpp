@@ -327,7 +327,6 @@ PID  PID_angle, PID_speed, PID_turn;
  void IrProcess();
  void line_model(void);
  boolean read_serial(void);
- void init_form_power(void);
  
 /**
  * \par Function
@@ -2866,131 +2865,6 @@ boolean read_serial(void)
 
 /**
  * \par Function
- *    init_form_power
- * \par Description
- *    Boot animation for auriga car kit
- * \param[in]
- *    None
- * \par Output
- *    None
- * \return
- *    None
- * \par Others
- *    None
- */
-void init_form_power(void)
-{
-  uint8_t R_Bright = 0;
-  for(uint8_t i = 0;i < 40;i++)
-  {
-    led.setColor(0,R_Bright,R_Bright,R_Bright);
-    led.show();
-    R_Bright += 1;
-    delay(12);
-    wdt_reset();
-  }
-
-  R_Bright = 40;
-  for(uint8_t i = 0;i < 40;i++)
-  {
-    led.setColor(0,R_Bright,R_Bright,R_Bright);
-    led.show();
-    R_Bright -= 1;
-    delay(12);
-    wdt_reset();
-  }
-
-  led.setColor(0,20,0,0);
-  led.show();
-  delay(200);
-  wdt_reset();
-
-  led.setColor(0,20,5,0);
-  led.show();
-  delay(200);
-
-  led.setColor(0,15,15,0);
-  led.show();
-  delay(200);
-
-  led.setColor(0,0,20,0);
-  led.show();
-  delay(200);
-  wdt_reset();
-
-  led.setColor(0,0,0,20);
-  led.show();
-  delay(200);
-
-  led.setColor(0,10,0,20);
-  led.show();
-  delay(200);
-
-  led.setColor(0,20,0,20);
-  led.show();
-  delay(200);
-  wdt_reset();
-
-  led.setColor(0,0,0,0);
-  led.setColor(12,20,10,20);
-  led.setColor(1,20,10,20);
-  led.setColor(2,20,10,20);
-  led.show();
-  delay(375);
-  wdt_reset();
-  led.setColor(3,20,20,0);
-  led.setColor(4,20,20,0);
-  led.setColor(5,20,20,0);
-  led.show();
-  delay(375);
-  wdt_reset();
-  led.setColor(6,0,10,20);
-  led.setColor(7,0,10,20);
-  led.setColor(8,0,10,20);
-  led.show();
-  delay(500);
-  wdt_reset();
-  led.setColor(9,10,0,0);
-  led.setColor(10,10,0,0);
-  led.setColor(11,10,0,0);
-  led.show();
-  delay(500);
-  wdt_reset();
-
-  led.setColor(0,0,0,0);
-  for(uint8_t i=0;i<4;i++)
-  {
-    led.setColor(12,20,10,20);
-    led.setColor(1,20,10,20);
-    led.setColor(2,20,10,20);
-    
-    led.setColor(3,20,20,0);
-    led.setColor(4,20,20,0);
-    led.setColor(5,20,20,0);
-
-    led.setColor(6,0,10,20);
-    led.setColor(7,0,10,20);
-    led.setColor(8,0,10,20);
-
-    led.setColor(9,10,0,0);
-    led.setColor(10,10,0,0);
-    led.setColor(11,10,0,0);
-    led.show();
-    delay(2);
-    led.setColor(0,0,0,0);
-    led.show();
-    delay(100);
-    wdt_reset();
-  }
-
-  buzzer.tone(330, 100);   //NOTE_C5
-  led.setColor(0,0,0,0);
-  led.show();
-  wdt_reset();
-}
-
-/**
- * \par Function
  *    setup
  * \par Description
  *    Initialization function for arduino
@@ -3048,10 +2922,6 @@ void setup()
   encoders[1].begin();
   wdt_reset();
 
-  if(boot_show_flag == true) {
-    init_form_power();
-  }
-
   encoders[0].runSpeed(0);
   encoders[1].runSpeed(0);
 
@@ -3086,6 +2956,9 @@ void setup()
   update_sensor = lasttime_speed = lasttime_angle = millis();
   blink_time = millis();
   rxruntime = millis();
+
+  buzzer.tone(660,100);
+  buzzer.noTone();
 }
 
 /**
